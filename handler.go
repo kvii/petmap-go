@@ -15,9 +15,9 @@ func (h Handler) Register(mux *http.ServeMux) {
 	// 普通路由 无访问控制
 	mux.HandleFunc("POST /api/v1/login", h.Login)
 	// 普通路由 demo 工程 未加访问控制中间件
-	mux.HandleFunc("GET /api/v1/message/{username}", h.GetMessages)
+	mux.HandleFunc("GET /api/v1/message/{userName}", h.GetMessages)
 	mux.HandleFunc("POST /api/v1/broadcast/pet/lost", h.BroadcastPetLostMessage)
-	mux.HandleFunc("GET /api/v1/user/info/full/{username}", h.GetUserFullInfo)
+	mux.HandleFunc("GET /api/v1/user/info/full/{userName}", h.GetUserFullInfo)
 	mux.HandleFunc("PUT /api/v1/pet/location", h.UpdatePetLocation)
 	// admin 路由 demo 工程 未加访问控制中间件
 	mux.HandleFunc("/api/v1/admin/data/save", h.Save)
@@ -51,7 +51,7 @@ func (h Handler) Login(w http.ResponseWriter, r *http.Request) {
 // 获取信息
 func (h Handler) GetMessages(w http.ResponseWriter, r *http.Request) {
 	var a GetMessages
-	a.UserName = r.PathValue("username")
+	a.UserName = r.PathValue("userName")
 	if a.UserName == "" {
 		h.Logger.Error("用户名为空")
 		ResponseErr(w, ErrBadRequest, http.StatusBadRequest)
@@ -78,7 +78,7 @@ func (h Handler) BroadcastPetLostMessage(w http.ResponseWriter, r *http.Request)
 // 获取用户全量信息
 func (h Handler) GetUserFullInfo(w http.ResponseWriter, r *http.Request) {
 	var a GetUserFullInfo
-	a.UserName = r.PathValue("username")
+	a.UserName = r.PathValue("userName")
 	if a.UserName == "" {
 		h.Logger.Error("用户名为空")
 		ResponseErr(w, ErrBadRequest, http.StatusBadRequest)
