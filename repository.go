@@ -65,7 +65,7 @@ func (r Repository) BroadcastPetLostMessage(p BroadcastPetLostMessage) {
 }
 
 type GetUserFullInfo struct {
-	UserName string `json:"userName"`
+	UserName string
 }
 
 // 获取用户数据
