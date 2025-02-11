@@ -27,8 +27,9 @@ type Home struct {
 
 // 消息
 type Message struct {
-	SendTo  string `json:"sendTo"`  // 接收者
-	Content string `json:"content"` // 内容
+	Sender   string `json:"sender"`   // 发送者
+	Receiver string `json:"receiver"` // 接收者
+	Content  string `json:"content"`  // 内容
 }
 
 // 数据表
@@ -47,17 +48,19 @@ type UserFullInfo struct {
 }
 
 // 创建宠物走丢协助消息
-func CreateMessagePetLostRequest(sendTo, owner, petName string) Message {
+func CreateMessagePetLostRequest(receiver, owner, petName string) Message {
 	return Message{
-		SendTo:  sendTo,
-		Content: fmt.Sprintf("请帮帮%s找找走丢的%s吧。", owner, petName),
+		Sender:   owner,
+		Receiver: receiver,
+		Content:  fmt.Sprintf("请帮我找找走丢的%s吧。", petName),
 	}
 }
 
 // 创建宠物走丢提示消息
 func CreateMessagePetLostHint(owner, petName string) Message {
 	return Message{
-		SendTo:  owner,
-		Content: fmt.Sprintf("您的宠物%s已走丢。", petName),
+		Sender:   "系统",
+		Receiver: owner,
+		Content:  fmt.Sprintf("您的宠物%s已走丢。", petName),
 	}
 }

@@ -37,7 +37,7 @@ type GetMessages struct {
 func (r Repository) GetMessages(p GetMessages) []Message {
 	messages := make([]Message, 0, len(tables.Messages))
 	for _, message := range tables.Messages {
-		if message.SendTo == p.UserName {
+		if message.Receiver == p.UserName {
 			messages = append(messages, message)
 		}
 	}
