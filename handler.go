@@ -13,15 +13,22 @@ type Handler struct {
 
 func (h Handler) Register(mux *http.ServeMux) {
 	// 普通路由 无访问控制
-	mux.HandleFunc("POST /api/v1/login", h.Login)
+	mux.HandleFunc("POST /api/v1/login", h.Log(h.Login))
 	// 普通路由 demo 工程 未加访问控制中间件
-	mux.HandleFunc("GET /api/v1/message/{userName}", h.GetMessages)
-	mux.HandleFunc("POST /api/v1/broadcast/pet/lost", h.BroadcastPetLostMessage)
-	mux.HandleFunc("GET /api/v1/user/info/full/{userName}", h.GetUserFullInfo)
-	mux.HandleFunc("PUT /api/v1/pet/location", h.UpdatePetLocation)
+	mux.HandleFunc("GET /api/v1/message/{userName}", h.Log(h.GetMessages))
+	mux.HandleFunc("POST /api/v1/broadcast/pet/lost", h.Log(h.BroadcastPetLostMessage))
+	mux.HandleFunc("GET /api/v1/user/info/full/{userName}", h.Log(h.GetUserFullInfo))
+	mux.HandleFunc("PUT /api/v1/pet/location", h.Log(h.UpdatePetLocation))
 	// admin 路由 demo 工程 未加访问控制中间件
-	mux.HandleFunc("/api/v1/admin/data/save", h.Save)
-	mux.HandleFunc("/api/v1/admin/data/load", h.Load)
+	mux.HandleFunc("/api/v1/admin/data/save", h.Log(h.Save))
+	mux.HandleFunc("/api/v1/admin/data/load", h.Log(h.Load))
+}
+
+func (h Handler) Log(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		h.Logger.Info("request", slog.String("method", r.Method), slog.Any("url", r.URL))
+		next(w, r)
+	}
 }
 
 // 登录
