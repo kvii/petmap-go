@@ -10,10 +10,10 @@ var tables = Tables{
 		{UserName: "张三", Password: "321"},
 	},
 	Pets: []Pet{
-		{PetName: "狗", Owner: "kvii", Latitude: 120.1850354, Longitude: 35.9518869},
+		{PetName: "狗", Owner: "kvii", Latitude: 35.9518869, Longitude: 120.1850354},
 	},
 	Homes: []Home{
-		{Owner: "kvii", Latitude: 120.1850354, Longitude: 35.9518869},
+		{Owner: "kvii", Latitude: 35.9518869, Longitude: 120.1850354},
 	},
 	Messages: []Message{},
 }
