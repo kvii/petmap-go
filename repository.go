@@ -86,16 +86,16 @@ func (r Repository) GetUserFullInfo(p GetUserFullInfo) (UserFullInfo, error) {
 type UpdatePetLocation struct {
 	PetName   string  `json:"petName"`
 	Owner     string  `json:"owner"`
-	Longitude float64 `json:"longitude"`
 	Latitude  float64 `json:"latitude"`
+	Longitude float64 `json:"longitude"`
 }
 
 // 更新宠物位置
 func (r Repository) UpdatePetLocation(p UpdatePetLocation) {
 	for i, pet := range tables.Pets {
 		if pet.Owner == p.Owner && pet.PetName == p.PetName {
-			tables.Pets[i].Longitude = p.Longitude
 			tables.Pets[i].Latitude = p.Latitude
+			tables.Pets[i].Longitude = p.Longitude
 			return
 		}
 	}

@@ -14,15 +14,15 @@ type User struct {
 type Pet struct {
 	PetName   string  `json:"petName"`   // 宠物名
 	Owner     string  `json:"owner"`     // 拥有者
-	Longitude float64 `json:"longitude"` // 经度
 	Latitude  float64 `json:"latitude"`  // 纬度
+	Longitude float64 `json:"longitude"` // 经度
 }
 
 // 家
 type Home struct {
 	Owner     string  `json:"owner"`     // 拥有者
-	Longitude float64 `json:"longitude"` // 经度
 	Latitude  float64 `json:"latitude"`  // 纬度
+	Longitude float64 `json:"longitude"` // 经度
 }
 
 // 消息
