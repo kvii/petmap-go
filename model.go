@@ -42,9 +42,9 @@ type Tables struct {
 
 // 用户全量信息
 type UserFullInfo struct {
-	User User  `json:"user"`           // 用户
-	Home Home  `json:"home,omitempty"` // 家
-	Pets []Pet `json:"pets"`           // 宠物
+	User User  `json:"user"`          // 用户
+	Home Home  `json:"home,omitzero"` // 家
+	Pets []Pet `json:"pets"`          // 宠物
 }
 
 // 创建宠物走丢协助消息
