@@ -139,7 +139,7 @@ func (r Repository) createMessage(p Message) {
 
 // 保存数据
 func (r Repository) Save() error {
-	bs, err := json.Marshal(tables)
+	bs, err := json.MarshalIndent(tables, "", "    ")
 	if err != nil {
 		return err
 	}
