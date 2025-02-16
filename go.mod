@@ -1,3 +1,3 @@
 module github.com/kvii/petmap-go
 
-go 1.23.6
+go 1.24.0
